@@ -1,7 +1,13 @@
-import { Box } from "@chakra-ui/react"
+import { Grid } from "@chakra-ui/react";
+import Sidebar from "./Sidebar";
 
-const Shell = ()=>{
-    return <Box>Hi</Box>
-}
+const Shell = ({ children }) => {
+  return (
+    <Grid as="section" gridTemplateColumns={"18rem 1fr"}>
+      <Sidebar />
+      {children}
+    </Grid>
+  );
+};
 
-export default Shell
+export default Shell;

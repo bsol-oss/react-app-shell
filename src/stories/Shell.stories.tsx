@@ -1,6 +1,7 @@
 import Shell from "@/components/Shell/Shell";
 import { Provider } from "@/components/ui/provider";
 import type { Meta, StoryObj } from "@storybook/react";
+import App from "./App";
 
 const meta: Meta<typeof Shell> = {
   component: Shell,
@@ -9,17 +10,13 @@ const meta: Meta<typeof Shell> = {
 export default meta;
 type Story = StoryObj<typeof Shell>;
 
-// export const FirstStory: Story = {
-//   args: {
-//     //👇 The args you need here will depend on your component
-//   },
-// };
-
-export const WithAnImage: Story = {
+export const WithAArticle: Story = {
   render: () => {
     return (
       <Provider>
-        <Shell />
+        <Shell>
+          <App />
+        </Shell>
       </Provider>
     );
   },
