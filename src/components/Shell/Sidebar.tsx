@@ -1,24 +1,48 @@
-import { Box, Grid } from "@chakra-ui/react";
+import { Avatar } from "@/components/ui/avatar";
+import { Box, Button, Flex, Grid, Image } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
-const Sidebar = () => {
+export interface User {
+  name: string;
+  avatar: string;
+}
+
+export interface SidebarProps {
+  navigation: ReactNode;
+  user: User;
+  logo: string;
+}
+
+const Sidebar = ({ navigation, user, logo }: SidebarProps) => {
   return (
     <Grid
       position={"sticky"}
       overscroll={"contain"}
       top={"0rem"}
       left={"0rem"}
-      gridTemplateRows={"auto auto 1fr auto auto"}
+      gridTemplateRows={"auto 1fr auto"}
       gridTemplateColumns={"auto"}
-      borderRight={"0.5px solid"}
-      borderRightColor={"gray.600"}
-      backgroundColor="gray.400"
+      overflow={"auto"}
       as="section"
       height={"100dvh"}
     >
-      <Box>Image</Box>
-      <Box>Title</Box>
-      <Box>Navigation</Box>
-      <Box>User</Box>
+      <Box>
+        <Image src={logo}></Image>
+      </Box>
+      <Box>{navigation}</Box>
+      <Button
+        as={Flex}
+        justifyContent={'start'}
+        alignItems={"center"}
+        margin={"0.5rem"}
+        variant={"ghost"}
+        gap={"1rem"}
+        height={"min-content"}
+      >
+        <Avatar src={user.avatar} />
+
+        <Box padding={"1rem"}>{user.name}</Box>
+      </Button>
     </Grid>
   );
 };
