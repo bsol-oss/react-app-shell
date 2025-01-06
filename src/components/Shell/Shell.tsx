@@ -17,7 +17,7 @@ const Shell = ({ children, navigation, user, logo }: ShellProps) => {
   };
   return (
     <ShellContext.Provider value={shared}>
-      <Grid as="section" gridTemplateColumns={"auto 1fr"}>
+      <Grid as="section" gridTemplateColumns={"auto 1fr"} padding={'1rem'}>
         <Sidebar navigation={navigation} user={user} logo={logo} {...shared} />
         {children}
       </Grid>
