@@ -1,5 +1,6 @@
 import { Button, Flex, Grid, Text } from "@chakra-ui/react";
 import { ReactNode } from "react";
+import { useShellContext } from "../Shell/useShellContext";
 
 export interface NavButtonProps {
   href: string;
@@ -15,32 +16,43 @@ const NavButton = ({
   icon = <></>,
   label = "",
 }: NavButtonProps) => {
+  const { sidebarWidth } = useShellContext();
+  if (sidebarWidth < 200) {
+    return (
+      <Button
+        variant="ghost"
+        justifyContent="center"
+        overflowX={"hidden"}
+        {...buttonProps}
+      >
+        {icon}
+      </Button>
+    );
+  }
   return (
     <Button
       variant="ghost"
       justifyContent="start"
       overflowX={"hidden"}
+      display={"grid"}
+      gap="0.75rem"
+      alignItems={"center"}
+      gridTemplateColumns={"auto 1fr"}
       {...buttonProps}
     >
-      <Grid
-        gap="0.75rem"
-        alignItems={"center"}
-        gridTemplateColumns={"auto 1fr"}
-      >
-        {icon}
-        {label !== "" && (
-          <Flex alignItems={"center"} gap={"0.5rem"}>
-            <Text
-              fontSize={"md"}
-              fontWeight={"lighter"}
-              textOverflow={"ellipsis"}
-            >
-              {label}
-            </Text>
-            {tag}
-          </Flex>
-        )}
-      </Grid>
+      {icon}
+      {label !== "" && (
+        <Flex alignItems={"center"} gap={"0.5rem"}>
+          <Text
+            fontSize={"md"}
+            fontWeight={"lighter"}
+            textOverflow={"ellipsis"}
+          >
+            {label}
+          </Text>
+          {tag}
+        </Flex>
+      )}
     </Button>
   );
 };

@@ -1,15 +1,21 @@
-import {
-  draggable,
-} from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
+import { draggable } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 import { disableNativeDragPreview } from "@atlaskit/pragmatic-drag-and-drop/element/disable-native-drag-preview";
 import { preventUnhandled } from "@atlaskit/pragmatic-drag-and-drop/prevent-unhandled";
 
-import { Avatar } from "@/components/ui/avatar";
-import { Box, Button, Flex, Grid, Image } from "@chakra-ui/react";
-import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
+import { DragLocationHistory } from "@atlaskit/pragmatic-drag-and-drop/dist/types/internal-types";
+import { Box, Flex, Grid, Image } from "@chakra-ui/react";
+import {
+  CSSProperties,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { State } from "react-beautiful-dnd";
 import invariant from "tiny-invariant";
-import { DragLocationHistory } from "@atlaskit/pragmatic-drag-and-drop/dist/types/internal-types";
+import UserButton from "../Controls/UserButton";
 
 export interface User {
   name: string;
@@ -20,6 +26,8 @@ export interface SidebarProps {
   navigation: ReactNode;
   user: User;
   logo: string;
+  sidebarWidth: number;
+  setSidebarWidth: Dispatch<SetStateAction<number>>;
 }
 
 const widths = {
@@ -42,8 +50,13 @@ function getProposedWidth({
   return Math.min(Math.max(widths.min, proposedWidth), widths.max);
 }
 
-const Sidebar = ({ navigation, user, logo }: SidebarProps) => {
-  const [initialWidth, setInitialWidth] = useState(widths.start);
+const Sidebar = ({
+  navigation,
+  user,
+  logo,
+  sidebarWidth,
+  setSidebarWidth,
+}: SidebarProps) => {
   const dividerRef = useRef<HTMLDivElement | null>(null);
   const [state, setState] = useState<State>({
     type: "idle",
@@ -70,73 +83,61 @@ const Sidebar = ({ navigation, user, logo }: SidebarProps) => {
       onDrag({ location }) {
         contentRef.current?.style.setProperty(
           "--local-resizing-width",
-          `${getProposedWidth({ initialWidth, location })}px`
+          `${getProposedWidth({ initialWidth: sidebarWidth, location })}px`
         );
       },
       onDrop({ location }) {
         preventUnhandled.stop();
         setState({ type: "idle" });
 
-        setInitialWidth(getProposedWidth({ initialWidth, location }));
+        setSidebarWidth(
+          getProposedWidth({ initialWidth: sidebarWidth, location })
+        );
         contentRef.current?.style.removeProperty("--local-resizing-width");
       },
     });
-  }, [initialWidth]);
+  }, [sidebarWidth]);
   return (
     <Flex
       position={"sticky"}
       top={"0rem"}
       left={"0rem"}
-      
       as="section"
       height={"100dvh"}
-      width={`${initialWidth}px`}
-
+      width={`${sidebarWidth}px`}
     >
       <Grid
         gridTemplateRows={"auto 1fr auto"}
-        flexGrow={'1'}
-        flexShrink={'1'}
+        flexGrow={"1"}
+        flexShrink={"1"}
         ref={contentRef}
         overflow={"auto"}
         style={
-          { "--local-initial-width": `${initialWidth}px` } as CSSProperties
+          { "--local-initial-width": `${sidebarWidth}px` } as CSSProperties
         }
       >
-        <Flex justifyContent={'center'}>
+        <Flex justifyContent={"center"}>
           <Image src={logo}></Image>
         </Flex>
         <Box>{navigation}</Box>
-        <Button
-          as={Flex}
-          justifyContent={"start"}
-          alignItems={"center"}
-          padding={"0.5rem"}
-          variant={"ghost"}
-          gap={"1rem"}
-          height={"min-content"}
-        >
-          <Avatar src={user.avatar} />
-
-          <Box>{user.name}</Box>
-        </Button>
+        <UserButton user={user}/>
       </Grid>
       <Flex
         ref={dividerRef}
         cursor={"col-resize"}
-        width={'2rem'}
-        bgColor={'transparent'}
-        flexGrow={'0'}
-        flexShrink={'0'}
+        width={"2rem"}
+        bgColor={"transparent"}
+        flexGrow={"0"}
+        flexShrink={"0"}
         _before={{
           content: '""',
           position: "relative",
-          width:"0.1rem",
+          width: "0.1rem",
           top: 0,
-          cursor:"col-resize",
-          left: '10px',
-          bgColor: "gray.200",
-          display:'block'
+          cursor: "col-resize",
+          left: "10px",
+          bgColor: "gray.400/20",
+          display: "block",
         }}
       />
     </Flex>
