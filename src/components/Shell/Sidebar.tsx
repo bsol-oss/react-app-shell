@@ -32,7 +32,7 @@ export interface SidebarProps {
 
 const widths = {
   start: 260,
-  min: 150,
+  min: 120,
   max: 450,
 };
 
