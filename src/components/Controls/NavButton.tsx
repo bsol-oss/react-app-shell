@@ -35,14 +35,14 @@ const NavButton = ({
       justifyContent="start"
       overflowX={"hidden"}
       display={"grid"}
-      gap="0.75rem"
+      gap="3"
       alignItems={"center"}
       gridTemplateColumns={"auto 1fr"}
       {...buttonProps}
     >
       {icon}
       {label !== "" && (
-        <Flex alignItems={"center"} gap={"0.5rem"}>
+        <Flex alignItems={"center"} gap={"2"}>
           <Text
             fontSize={"md"}
             fontWeight={"lighter"}

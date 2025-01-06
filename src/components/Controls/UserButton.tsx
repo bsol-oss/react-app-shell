@@ -18,9 +18,7 @@ const UserButton = ({ user }: UserButtonProps) => {
         as={Flex}
         justifyContent={"center"}
         alignItems={"center"}
-        padding={"0.5rem"}
         variant={"ghost"}
-        gap={"1rem"}
         height={"min-content"}
       >
         <Avatar src={avatar} />
@@ -32,9 +30,9 @@ const UserButton = ({ user }: UserButtonProps) => {
       as={Flex}
       justifyContent={"start"}
       alignItems={"center"}
-      padding={"0.5rem"}
+      padding={"2"}
       variant={"ghost"}
-      gap={"1rem"}
+      gap={"4"}
       height={"min-content"}
     >
       <Avatar src={avatar} />

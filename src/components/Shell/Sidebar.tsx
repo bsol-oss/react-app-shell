@@ -125,17 +125,17 @@ const Sidebar = ({
       <Flex
         ref={dividerRef}
         cursor={"col-resize"}
-        width={"2rem"}
+        width={"4"}
         bgColor={"transparent"}
         flexGrow={"0"}
         flexShrink={"0"}
         _before={{
           content: '""',
           position: "relative",
-          width: "0.1rem",
+          width: "0.5",
           top: 0,
           cursor: "col-resize",
-          left: "10px",
+          left: 0,
           bgColor: "gray.400/20",
           display: "block",
         }}
