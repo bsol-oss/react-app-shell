@@ -1,12 +1,12 @@
 {
-  "name": "@bsol-oss/react-datatable5",
-  "version": "5.0.1",
+  "name": "@bsol-oss/react-shell",
+  "version": "1.0.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/bsol-oss/react-datatable5.git",
-  "homepage": "https://github.com/bsol-oss/react-datatable5#react-datatable5",
+  "repository": "https://github.com/bsol-oss/react-shell.git",
+  "homepage": "https://github.com/bsol-oss/react-shell",
   "author": "screw123",
   "license": "MIT",
   "keywords": [
