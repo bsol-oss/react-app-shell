@@ -3,7 +3,14 @@ import { Provider } from "@/components/ui/provider";
 import type { Meta, StoryObj } from "@storybook/react";
 import App from "./App";
 import NavButton from "@/components/Controls/NavButton";
-import { FaHome } from "react-icons/fa";
+import {
+  FaBriefcase,
+  FaEnvelope,
+  FaHome,
+  FaInfoCircle,
+  FaPenNib,
+  FaTools,
+} from "react-icons/fa";
 import { Flex } from "@chakra-ui/react";
 
 const meta: Meta<typeof Shell> = {
@@ -13,7 +20,7 @@ const meta: Meta<typeof Shell> = {
 export default meta;
 type Story = StoryObj<typeof Shell>;
 
-export const WithAArticle: Story = {
+export const PersonalBlog: Story = {
   render: () => {
     return (
       <Provider>
@@ -21,8 +28,8 @@ export const WithAArticle: Story = {
           navigation={
             <Flex flexFlow={"column"} padding={"1rem"}>
               <NavButton
-                href={"hi"}
-                label="hi"
+                href={"/"}
+                label="Home"
                 icon={
                   <>
                     <FaHome />
@@ -30,56 +37,47 @@ export const WithAArticle: Story = {
                 }
               />
               <NavButton
-                href={"hi"}
-                label="hi"
+                href={"/about"}
+                label="About"
                 icon={
                   <>
-                    <FaHome />
+                    <FaInfoCircle />
                   </>
                 }
               />
               <NavButton
-                href={"hi"}
-                label="hi"
+                href={"/blog"}
+                label="Blog"
                 icon={
                   <>
-                    <FaHome />
+                    <FaPenNib />
                   </>
                 }
               />
               <NavButton
-                href={"hi"}
-                label="hi"
+                href={"/portfolio"}
+                label="Portfolio"
                 icon={
                   <>
-                    <FaHome />
+                    <FaBriefcase />
                   </>
                 }
               />
               <NavButton
-                href={"hi"}
-                label="hi"
+                href={"/contact"}
+                label="Contact"
                 icon={
                   <>
-                    <FaHome />
+                    <FaEnvelope />
                   </>
                 }
               />
               <NavButton
-                href={"hi"}
-                label="hi"
+                href={"/services"}
+                label="Services"
                 icon={
                   <>
-                    <FaHome />
-                  </>
-                }
-              />
-              <NavButton
-                href={"hi"}
-                label="hi"
-                icon={
-                  <>
-                    <FaHome />
+                    <FaTools />
                   </>
                 }
               />

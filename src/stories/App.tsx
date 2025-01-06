@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Image } from "@chakra-ui/react";
 
 const App = () => {
   const articles = [
@@ -41,23 +41,29 @@ const App = () => {
   ];
 
   return (
-    <Flex gap={"1rem"} flexFlow={"column"} padding={"1rem"}>
-      <Box>
-        <h1>Latest Articles</h1>
-      </Box>
-      <Flex gap={"1rem"} flexFlow={"column"}>
-        {articles.map((article, index) => (
-          <Flex gap={"1rem"} flexFlow={"column"} key={index}>
-            <Heading>{article.title}</Heading>
-            <Text>
-              <Text as={"span"}>By:</Text> {article.author}
-            </Text>
-            <Text>
-              <Text as={"span"}>Published on:</Text> {article.date}
-            </Text>
-            <Text>{article.content}</Text>
-          </Flex>
-        ))}
+    <Flex gap={"1rem"} flexFlow={"column"}>
+      <Image src="https://picsum.photos/400/100?grayscale&blur=2" />
+      <Flex gap={"1rem"} flexFlow={"column"} padding={"1rem"}>
+        <Box>
+          <h1>Latest Articles</h1>
+        </Box>
+        <Flex gap={"4rem"} flexFlow={"column"}>
+          {articles.map((article, index) => (
+            <Flex gap={"1rem"} flexFlow={"column"} key={index}>
+               <Image src={`https://picsum.photos/400/100?grayscale&blur=2&random=${index}`} />
+              <Heading>{article.title}</Heading>
+              <Flex gap={"1rem"} flexFlow={"row"} opacity={'0.8'} fontSize={'sm'}>
+                <Text>
+                  <Text as={"span"}>By:</Text> {article.author}
+                </Text>
+                <Text>
+                  <Text as={"span"}>Published on:</Text> {article.date}
+                </Text>
+              </Flex>
+              <Text>{article.content}</Text>
+            </Flex>
+          ))}
+        </Flex>
       </Flex>
     </Flex>
   );

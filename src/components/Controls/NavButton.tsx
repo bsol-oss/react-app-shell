@@ -31,10 +31,8 @@ const NavButton = ({
         {label !== "" && (
           <Flex alignItems={"center"} gap={"0.5rem"}>
             <Text
-              color="gray.50"
               fontSize={"md"}
               fontWeight={"lighter"}
-              _dark={{ color: "gray.50" }}
               textOverflow={"ellipsis"}
             >
               {label}
