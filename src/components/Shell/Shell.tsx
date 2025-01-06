@@ -8,7 +8,7 @@ export interface ShellProps extends SidebarProps {
 
 const Shell = ({ children, navigation, user, logo }: ShellProps) => {
   return (
-    <Grid as="section" gridTemplateColumns={"18rem 1fr"}>
+    <Grid as="section" gridTemplateColumns={"auto 1fr"}>
       <Sidebar navigation={navigation} user={user} logo={logo} />
       {children}
     </Grid>
