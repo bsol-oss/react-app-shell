@@ -2,11 +2,13 @@ import { Button, Flex, Box } from "@chakra-ui/react";
 import { Avatar } from "@/components/ui/avatar";
 import { useShellContext } from "../Shell/useShellContext";
 
+export interface User {
+  name: string;
+  avatar: string;
+}
+
 export interface UserButtonProps {
-  user: {
-    avatar: string;
-    name: string;
-  };
+  user: User;
 }
 
 const UserButton = ({ user }: UserButtonProps) => {

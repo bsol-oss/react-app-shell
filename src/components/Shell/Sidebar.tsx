@@ -3,7 +3,7 @@ import { disableNativeDragPreview } from "@atlaskit/pragmatic-drag-and-drop/elem
 import { preventUnhandled } from "@atlaskit/pragmatic-drag-and-drop/prevent-unhandled";
 
 import { DragLocationHistory } from "@atlaskit/pragmatic-drag-and-drop/dist/types/internal-types";
-import { Box, Flex, Grid, Image } from "@chakra-ui/react";
+import { Flex, Grid } from "@chakra-ui/react";
 import {
   CSSProperties,
   Dispatch,
@@ -15,17 +15,9 @@ import {
 } from "react";
 import { State } from "react-beautiful-dnd";
 import invariant from "tiny-invariant";
-import UserButton from "../Controls/UserButton";
-
-export interface User {
-  name: string;
-  avatar: string;
-}
 
 export interface SidebarProps {
   navigation: ReactNode;
-  user: User;
-  logo: string;
   sidebarWidth: number;
   setSidebarWidth: Dispatch<SetStateAction<number>>;
 }
@@ -52,8 +44,6 @@ function getProposedWidth({
 
 const Sidebar = ({
   navigation,
-  user,
-  logo,
   sidebarWidth,
   setSidebarWidth,
 }: SidebarProps) => {
@@ -96,7 +86,7 @@ const Sidebar = ({
         contentRef.current?.style.removeProperty("--local-resizing-width");
       },
     });
-  }, [sidebarWidth]);
+  }, [sidebarWidth, setSidebarWidth]);
   return (
     <Flex
       position={"sticky"}
@@ -107,7 +97,6 @@ const Sidebar = ({
       width={`${sidebarWidth}px`}
     >
       <Grid
-        gridTemplateRows={"auto 1fr auto"}
         flexGrow={"1"}
         flexShrink={"1"}
         ref={contentRef}
@@ -116,11 +105,7 @@ const Sidebar = ({
           { "--local-initial-width": `${sidebarWidth}px` } as CSSProperties
         }
       >
-        <Flex justifyContent={"center"}>
-          <Image src={logo}></Image>
-        </Flex>
-        <Box>{navigation}</Box>
-        <UserButton user={user}/>
+        {navigation}
       </Grid>
       <Flex
         ref={dividerRef}

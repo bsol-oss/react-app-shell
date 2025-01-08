@@ -8,7 +8,7 @@ export interface ShellProps
   children: ReactNode;
 }
 
-const Shell = ({ children, navigation, user, logo }: ShellProps) => {
+const Shell = ({ children, navigation }: ShellProps) => {
   const [sidebarWidth, setSidebarWidth] = useState<number>(200);
 
   const shared = {
@@ -18,7 +18,7 @@ const Shell = ({ children, navigation, user, logo }: ShellProps) => {
   return (
     <ShellContext.Provider value={shared}>
       <Grid as="section" gridTemplateColumns={"auto 1fr"}>
-        <Sidebar navigation={navigation} user={user} logo={logo} {...shared} />
+        <Sidebar navigation={navigation} {...shared} />
         {children}
       </Grid>
     </ShellContext.Provider>
