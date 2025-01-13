@@ -1,7 +1,8 @@
+import { ButtonProps } from "@chakra-ui/react";
 import { ReactNode } from "react";
 export interface NavButtonProps {
     href: string;
-    buttonProps?: React.RefAttributes<HTMLButtonElement>;
+    buttonProps?: ButtonProps;
     tag?: ReactNode;
     icon?: ReactNode;
     label?: string;

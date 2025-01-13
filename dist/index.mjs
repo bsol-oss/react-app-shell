@@ -1,18 +1,27 @@
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { Avatar, Group } from '@chakra-ui/react';
 import * as React from 'react';
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
+import 'react-icons/rx';
 import '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import '@atlaskit/pragmatic-drag-and-drop/element/disable-native-drag-preview';
 import '@atlaskit/pragmatic-drag-and-drop/prevent-unhandled';
 import 'tiny-invariant';
 
-createContext({
+const ShellContext = createContext({
     sidebarWidth: 100,
     setSidebarWidth: ((prevState) => {
         return prevState;
     }),
 });
+
+const useShellContext = () => {
+    const { sidebarWidth, setSidebarWidth } = useContext(ShellContext);
+    return {
+        sidebarWidth,
+        setSidebarWidth,
+    };
+};
 
 React.forwardRef(function Avatar$1(props, ref) {
     const { name, src, srcSet, loading, icon, fallback, children, ...rest } = props;
@@ -41,4 +50,4 @@ const widths = {
     max: 450,
 };
 
-export { widths };
+export { useShellContext, widths };

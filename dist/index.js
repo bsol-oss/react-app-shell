@@ -3,6 +3,7 @@
 var jsxRuntime = require('react/jsx-runtime');
 var react = require('@chakra-ui/react');
 var React = require('react');
+require('react-icons/rx');
 require('@atlaskit/pragmatic-drag-and-drop/element/adapter');
 require('@atlaskit/pragmatic-drag-and-drop/element/disable-native-drag-preview');
 require('@atlaskit/pragmatic-drag-and-drop/prevent-unhandled');
@@ -27,12 +28,20 @@ function _interopNamespaceDefault(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespaceDefault(React);
 
-React.createContext({
+const ShellContext = React.createContext({
     sidebarWidth: 100,
     setSidebarWidth: ((prevState) => {
         return prevState;
     }),
 });
+
+const useShellContext = () => {
+    const { sidebarWidth, setSidebarWidth } = React.useContext(ShellContext);
+    return {
+        sidebarWidth,
+        setSidebarWidth,
+    };
+};
 
 React__namespace.forwardRef(function Avatar(props, ref) {
     const { name, src, srcSet, loading, icon, fallback, children, ...rest } = props;
@@ -61,4 +70,5 @@ const widths = {
     max: 450,
 };
 
+exports.useShellContext = useShellContext;
 exports.widths = widths;
