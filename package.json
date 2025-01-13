@@ -5,7 +5,10 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/bsol-oss/react-shell.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsol-oss/react-shell.git"
+  },
   "homepage": "https://github.com/bsol-oss/react-shell",
   "author": "screw123",
   "license": "MIT",
