@@ -1,5 +1,5 @@
 {
-  "name": "@bsol-oss/react-shell",
+  "name": "@bsol-oss/react-app-shell",
   "version": "0.0.2",
   "type": "module",
   "main": "dist/index.js",
@@ -7,9 +7,9 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bsol-oss/react-shell.git"
+    "url": "git+https://github.com/bsol-oss/react-app-shell.git"
   },
-  "homepage": "https://github.com/bsol-oss/react-shell",
+  "homepage": "https://github.com/bsol-oss/react-app-shell",
   "author": "screw123",
   "license": "MIT",
   "keywords": [
