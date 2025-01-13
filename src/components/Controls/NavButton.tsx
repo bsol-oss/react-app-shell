@@ -1,10 +1,10 @@
-import { Button, Flex, Grid, Text } from "@chakra-ui/react";
+import { Button, ButtonProps, Flex, Text } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { useShellContext } from "../Shell/useShellContext";
 
 export interface NavButtonProps {
   href: string;
-  buttonProps?: React.RefAttributes<HTMLButtonElement>;
+  buttonProps?: ButtonProps;
   tag?: ReactNode;
   icon?: ReactNode;
   label?: string;
