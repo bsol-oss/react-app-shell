@@ -1,4 +1,4 @@
-import { Button, Flex, Box } from "@chakra-ui/react";
+import { Button, Flex, Text } from "@chakra-ui/react";
 import { Avatar } from "@/components/ui/avatar";
 import { useShellContext } from "../Shell/useShellContext";
 
@@ -39,7 +39,9 @@ const UserButton = ({ user }: UserButtonProps) => {
     >
       <Avatar src={avatar} />
 
-      <Box>{name}</Box>
+      <Text textOverflow={"ellipsis"} overflow={"hidden"}>
+        {name}
+      </Text>
     </Button>
   );
 };
