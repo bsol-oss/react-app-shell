@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { Flex, Grid, Image } from "@chakra-ui/react";
 import UserButton from "@/components/Controls/UserButton";
+import ResizeButton from "@/components/Controls/ResizeButton";
 
 const meta: Meta<typeof Shell> = {
   component: Shell,
@@ -89,6 +90,8 @@ export const PersonalBlog: Story = {
                     </>
                   }
                 />
+              <ResizeButton />
+
               </Flex>
               <UserButton
                 user={{
