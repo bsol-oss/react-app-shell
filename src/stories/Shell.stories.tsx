@@ -32,9 +32,12 @@ export const PersonalBlog: Story = {
               templateRows={"auto 1fr auto"}
               flexFlow={"column"}
               padding={"1"}
-              gap={'4'}
+              gap={"4"}
             >
-              <Image justifySelf={'center'} src={"https://picsum.photos/300/200?grayscale"}></Image>
+              <Image
+                justifySelf={"center"}
+                src={"https://picsum.photos/300/200?grayscale"}
+              ></Image>
               <Flex flexFlow={"column"}>
                 <NavButton
                   href={"/"}
@@ -90,15 +93,21 @@ export const PersonalBlog: Story = {
                     </>
                   }
                 />
-              <ResizeButton />
-
               </Flex>
-              <UserButton
-                user={{
-                  name: "Lorrem picsum",
-                  avatar: "https://picsum.photos/300/200?grayscale",
-                }}
-              />
+              <Grid
+                templateRows={" 1fr auto"}
+                padding={"1"}
+                gap={"4"}
+                alignItems={"center"}
+              >
+                <ResizeButton />
+                <UserButton
+                  user={{
+                    name: "Lorrem picsum",
+                    avatar: "https://picsum.photos/300/200?grayscale",
+                  }}
+                />
+              </Grid>
             </Grid>
           }
         >
