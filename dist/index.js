@@ -54,3 +54,11 @@ React__namespace.forwardRef(function AvatarGroup(props, ref) {
     const { size, variant, borderless, ...rest } = props;
     return (jsxRuntime.jsx(react.Avatar.PropsProvider, { value: { size, variant, borderless }, children: jsxRuntime.jsx(react.Group, { gap: "0", spaceX: "-3", ref: ref, ...rest }) }));
 });
+
+const widths = {
+    start: 260,
+    min: 120,
+    max: 450,
+};
+
+exports.widths = widths;

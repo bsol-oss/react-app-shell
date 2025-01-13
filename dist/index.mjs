@@ -34,3 +34,11 @@ React.forwardRef(function AvatarGroup(props, ref) {
     const { size, variant, borderless, ...rest } = props;
     return (jsx(Avatar.PropsProvider, { value: { size, variant, borderless }, children: jsx(Group, { gap: "0", spaceX: "-3", ref: ref, ...rest }) }));
 });
+
+const widths = {
+    start: 260,
+    min: 120,
+    max: 450,
+};
+
+export { widths };
