@@ -22,7 +22,7 @@ export interface SidebarProps {
   setSidebarWidth: Dispatch<SetStateAction<number>>;
 }
 
-const widths = {
+export const widths = {
   start: 260,
   min: 120,
   max: 450,
