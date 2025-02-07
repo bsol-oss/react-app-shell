@@ -1,6 +1,5 @@
-/// <reference types="react" />
+import * as react_jsx_runtime from 'react/jsx-runtime';
 import { ButtonProps } from '@chakra-ui/react';
-import * as react from 'react';
 import { ReactNode, Dispatch, SetStateAction } from 'react';
 
 interface NavButtonProps {
@@ -10,6 +9,7 @@ interface NavButtonProps {
     icon?: ReactNode;
     label?: string;
 }
+declare const NavButton: ({ buttonProps, tag, icon, label, }: NavButtonProps) => react_jsx_runtime.JSX.Element;
 
 interface User {
     name: string;
@@ -18,30 +18,23 @@ interface User {
 interface UserButtonProps {
     user: User;
 }
+declare const UserButton: ({ user }: UserButtonProps) => react_jsx_runtime.JSX.Element;
 
 interface ResizeButtonProps {
     buttonProps?: React.RefAttributes<HTMLButtonElement>;
     icon?: ReactNode;
 }
+declare const ResizeButton: ({ buttonProps, icon, }: ResizeButtonProps) => react_jsx_runtime.JSX.Element;
 
 interface SidebarProps {
     navigation: ReactNode;
     sidebarWidth: number;
     setSidebarWidth: Dispatch<SetStateAction<number>>;
 }
-declare const widths: {
-    start: number;
-    min: number;
-    max: number;
-};
 
 interface ShellProps extends Omit<SidebarProps, "sidebarWidth" | "setSidebarWidth"> {
     children: ReactNode;
 }
+declare const Shell: ({ children, navigation }: ShellProps) => react_jsx_runtime.JSX.Element;
 
-declare const useShellContext: () => {
-    sidebarWidth: number;
-    setSidebarWidth: react.Dispatch<react.SetStateAction<number>>;
-};
-
-export { type NavButtonProps, type ResizeButtonProps, type ShellProps, type SidebarProps, type User, type UserButtonProps, useShellContext, widths };
+export { NavButton, type NavButtonProps, ResizeButton, type ResizeButtonProps, Shell, type ShellProps, type User, UserButton, type UserButtonProps };

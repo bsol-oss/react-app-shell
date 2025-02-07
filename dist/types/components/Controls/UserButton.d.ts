@@ -5,5 +5,4 @@ export interface User {
 export interface UserButtonProps {
     user: User;
 }
-declare const UserButton: ({ user }: UserButtonProps) => import("react/jsx-runtime").JSX.Element;
-export default UserButton;
+export declare const UserButton: ({ user }: UserButtonProps) => import("react/jsx-runtime").JSX.Element;
