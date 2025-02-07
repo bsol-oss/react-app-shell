@@ -88,19 +88,15 @@ const Sidebar = ({
     });
   }, [sidebarWidth, setSidebarWidth]);
   return (
-    <Flex
-      position={"sticky"}
-      top={"0rem"}
-      left={"0rem"}
-      as="section"
-      height={"100dvh"}
-      width={`${sidebarWidth}px`}
-    >
+    <Flex width={`${sidebarWidth}px`}>
       <Grid
         flexGrow={"1"}
         flexShrink={"1"}
         ref={contentRef}
-        overflow={"auto"}
+        position={"sticky"}
+        top={"0rem"}
+        as="section"
+        height={"100dvh"}
         style={
           { "--local-initial-width": `${sidebarWidth}px` } as CSSProperties
         }
@@ -110,7 +106,7 @@ const Sidebar = ({
       <Flex
         ref={dividerRef}
         cursor={"col-resize"}
-        width={"4"}
+        width={"1"}
         bgColor={"transparent"}
         flexGrow={"0"}
         flexShrink={"0"}
@@ -120,7 +116,7 @@ const Sidebar = ({
           width: "0.5",
           top: 0,
           cursor: "col-resize",
-          left: 0,
+          left: 0.5,
           bgColor: "gray.400/20",
           display: "block",
         }}
