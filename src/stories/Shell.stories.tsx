@@ -1,8 +1,8 @@
-import Shell from "@/components/Shell/Shell";
+import { Shell } from "@/components/Shell/Shell";
 import { Provider } from "@/components/ui/provider";
 import type { Meta, StoryObj } from "@storybook/react";
 import App from "./App";
-import NavButton from "@/components/Controls/NavButton";
+import { NavButton } from "@/components/Controls/NavButton";
 import {
   FaBriefcase,
   FaEnvelope,
@@ -12,8 +12,8 @@ import {
   FaTools,
 } from "react-icons/fa";
 import { Flex, Grid, Image } from "@chakra-ui/react";
-import UserButton from "@/components/Controls/UserButton";
-import ResizeButton from "@/components/Controls/ResizeButton";
+import { UserButton } from "@/components/Controls/UserButton";
+import { ResizeButton } from "@/components/Controls/ResizeButton";
 
 const meta: Meta<typeof Shell> = {
   component: Shell,

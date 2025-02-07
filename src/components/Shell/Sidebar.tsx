@@ -97,6 +97,7 @@ const Sidebar = ({
         top={"0rem"}
         as="section"
         height={"100dvh"}
+        overflow={'auto'}
         style={
           { "--local-initial-width": `${sidebarWidth}px` } as CSSProperties
         }
