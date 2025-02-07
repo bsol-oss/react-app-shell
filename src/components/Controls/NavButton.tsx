@@ -10,7 +10,7 @@ export interface NavButtonProps {
   label?: string;
 }
 
-const NavButton = ({
+export const NavButton = ({
   buttonProps = {},
   tag = <></>,
   icon = <></>,
@@ -56,5 +56,3 @@ const NavButton = ({
     </Button>
   );
 };
-
-export default NavButton;

@@ -8,7 +8,7 @@ export interface ShellProps
   children: ReactNode;
 }
 
-const Shell = ({ children, navigation }: ShellProps) => {
+export const Shell = ({ children, navigation }: ShellProps) => {
   const [sidebarWidth, setSidebarWidth] = useState<number>(200);
 
   const shared = {
@@ -31,4 +31,4 @@ const Shell = ({ children, navigation }: ShellProps) => {
   );
 };
 
-export default Shell;
+

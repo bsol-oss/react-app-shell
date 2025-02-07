@@ -9,7 +9,7 @@ export interface ResizeButtonProps {
   icon?: ReactNode;
 }
 
-const ResizeButton = ({
+export const ResizeButton = ({
   buttonProps = {},
   icon = (
     <>
@@ -43,5 +43,3 @@ const ResizeButton = ({
     </Button>
   );
 };
-
-export default ResizeButton;

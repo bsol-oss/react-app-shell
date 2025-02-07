@@ -11,7 +11,7 @@ export interface UserButtonProps {
   user: User;
 }
 
-const UserButton = ({ user }: UserButtonProps) => {
+export const UserButton = ({ user }: UserButtonProps) => {
   const { avatar, name } = user;
   const { sidebarWidth } = useShellContext();
   if (sidebarWidth < 200) {
@@ -45,5 +45,3 @@ const UserButton = ({ user }: UserButtonProps) => {
     </Button>
   );
 };
-
-export default UserButton;
