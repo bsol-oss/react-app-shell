@@ -105,7 +105,7 @@ const Sidebar = ({ navigation, sidebarWidth, setSidebarWidth, }) => {
             },
         });
     }, [sidebarWidth, setSidebarWidth]);
-    return (jsxs(Flex, { width: `${sidebarWidth}px`, children: [jsx(Grid, { flexGrow: "1", flexShrink: "1", ref: contentRef, position: "sticky", top: "0rem", as: "section", height: "100dvh", style: { "--local-initial-width": `${sidebarWidth}px` }, children: navigation }), jsx(Flex, { ref: dividerRef, cursor: "col-resize", width: "1", bgColor: "transparent", flexGrow: "0", flexShrink: "0", _before: {
+    return (jsxs(Flex, { width: `${sidebarWidth}px`, children: [jsx(Grid, { flexGrow: "1", flexShrink: "1", ref: contentRef, position: "sticky", top: "0rem", as: "section", height: "100dvh", overflow: 'auto', style: { "--local-initial-width": `${sidebarWidth}px` }, children: navigation }), jsx(Flex, { ref: dividerRef, cursor: "col-resize", width: "1", bgColor: "transparent", flexGrow: "0", flexShrink: "0", _before: {
                     content: '""',
                     position: "relative",
                     width: "0.5",

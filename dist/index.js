@@ -125,7 +125,7 @@ const Sidebar = ({ navigation, sidebarWidth, setSidebarWidth, }) => {
             },
         });
     }, [sidebarWidth, setSidebarWidth]);
-    return (jsxRuntime.jsxs(react.Flex, { width: `${sidebarWidth}px`, children: [jsxRuntime.jsx(react.Grid, { flexGrow: "1", flexShrink: "1", ref: contentRef, position: "sticky", top: "0rem", as: "section", height: "100dvh", style: { "--local-initial-width": `${sidebarWidth}px` }, children: navigation }), jsxRuntime.jsx(react.Flex, { ref: dividerRef, cursor: "col-resize", width: "1", bgColor: "transparent", flexGrow: "0", flexShrink: "0", _before: {
+    return (jsxRuntime.jsxs(react.Flex, { width: `${sidebarWidth}px`, children: [jsxRuntime.jsx(react.Grid, { flexGrow: "1", flexShrink: "1", ref: contentRef, position: "sticky", top: "0rem", as: "section", height: "100dvh", overflow: 'auto', style: { "--local-initial-width": `${sidebarWidth}px` }, children: navigation }), jsxRuntime.jsx(react.Flex, { ref: dividerRef, cursor: "col-resize", width: "1", bgColor: "transparent", flexGrow: "0", flexShrink: "0", _before: {
                     content: '""',
                     position: "relative",
                     width: "0.5",
