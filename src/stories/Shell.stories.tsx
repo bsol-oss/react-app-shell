@@ -39,7 +39,14 @@ export const PersonalBlog: Story = {
                 src={"https://picsum.photos/300/200?grayscale"}
               ></Image>
               <Flex flexFlow={"column"}>
-                <NavButton href={"/"} label="Home" icon={<FaHome />} />
+                <NavButton
+                  href={"/"}
+                  label="Home"
+                  icon={<FaHome />}
+                  buttonProps={{
+                    onClick: () => {},
+                  }}
+                />
                 <NavButton
                   href={"/about"}
                   label="About"
