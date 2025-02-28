@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import { useShellContext } from "../Shell/useShellContext";
 
 export interface NavButtonProps {
-  href: string;
   buttonProps?: ButtonProps;
   tag?: ReactNode;
   icon?: ReactNode;
