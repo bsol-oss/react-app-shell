@@ -54,13 +54,12 @@ React.forwardRef(function AvatarGroup(props, ref) {
     return (jsx(Avatar$1.PropsProvider, { value: { size, variant, borderless }, children: jsx(Group, { gap: "0", spaceX: "-3", ref: ref, ...rest }) }));
 });
 
-const UserButton = ({ user }) => {
-    const { avatar, name } = user;
+const UserButton = ({ buttonProps, avatarProps }) => {
     const { sidebarWidth } = useShellContext();
     if (sidebarWidth < 200) {
-        return (jsx(Button, { as: Flex, justifyContent: "center", alignItems: "center", variant: "ghost", height: "min-content", children: jsx(Avatar, { src: avatar }) }));
+        return (jsx(Button, { as: Flex, justifyContent: "center", alignItems: "center", variant: "ghost", height: "min-content", ...buttonProps, children: jsx(Avatar, { ...avatarProps }) }));
     }
-    return (jsxs(Button, { as: Flex, justifyContent: "start", alignItems: "center", padding: "2", variant: "ghost", gap: "4", height: "min-content", children: [jsx(Avatar, { src: avatar }), jsx(Text, { textOverflow: "ellipsis", overflow: "hidden", children: name })] }));
+    return (jsxs(Button, { as: Flex, justifyContent: "start", alignItems: "center", padding: "2", variant: "ghost", gap: "4", height: "min-content", ...buttonProps, children: [jsx(Avatar, { ...avatarProps }), jsx(Text, { textOverflow: "ellipsis", overflow: "hidden", children: avatarProps.name })] }));
 };
 
 // pulling this into a separate file so adapter(s) that don't

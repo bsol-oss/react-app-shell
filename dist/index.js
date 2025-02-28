@@ -74,13 +74,12 @@ React__namespace.forwardRef(function AvatarGroup(props, ref) {
     return (jsxRuntime.jsx(react.Avatar.PropsProvider, { value: { size, variant, borderless }, children: jsxRuntime.jsx(react.Group, { gap: "0", spaceX: "-3", ref: ref, ...rest }) }));
 });
 
-const UserButton = ({ user }) => {
-    const { avatar, name } = user;
+const UserButton = ({ buttonProps, avatarProps }) => {
     const { sidebarWidth } = useShellContext();
     if (sidebarWidth < 200) {
-        return (jsxRuntime.jsx(react.Button, { as: react.Flex, justifyContent: "center", alignItems: "center", variant: "ghost", height: "min-content", children: jsxRuntime.jsx(Avatar, { src: avatar }) }));
+        return (jsxRuntime.jsx(react.Button, { as: react.Flex, justifyContent: "center", alignItems: "center", variant: "ghost", height: "min-content", ...buttonProps, children: jsxRuntime.jsx(Avatar, { ...avatarProps }) }));
     }
-    return (jsxRuntime.jsxs(react.Button, { as: react.Flex, justifyContent: "start", alignItems: "center", padding: "2", variant: "ghost", gap: "4", height: "min-content", children: [jsxRuntime.jsx(Avatar, { src: avatar }), jsxRuntime.jsx(react.Text, { textOverflow: "ellipsis", overflow: "hidden", children: name })] }));
+    return (jsxRuntime.jsxs(react.Button, { as: react.Flex, justifyContent: "start", alignItems: "center", padding: "2", variant: "ghost", gap: "4", height: "min-content", ...buttonProps, children: [jsxRuntime.jsx(Avatar, { ...avatarProps }), jsxRuntime.jsx(react.Text, { textOverflow: "ellipsis", overflow: "hidden", children: avatarProps.name })] }));
 };
 
 // pulling this into a separate file so adapter(s) that don't

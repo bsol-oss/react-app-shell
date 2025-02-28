@@ -1,6 +1,7 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import { ButtonProps } from '@chakra-ui/react';
 import { ReactNode, Dispatch, SetStateAction } from 'react';
+import { AvatarProps } from '@/components/ui/avatar';
 
 interface NavButtonProps {
     buttonProps?: ButtonProps;
@@ -10,14 +11,11 @@ interface NavButtonProps {
 }
 declare const NavButton: ({ buttonProps, tag, icon, label, }: NavButtonProps) => react_jsx_runtime.JSX.Element;
 
-interface User {
-    name: string;
-    avatar: string;
-}
 interface UserButtonProps {
-    user: User;
+    buttonProps: ButtonProps;
+    avatarProps: AvatarProps;
 }
-declare const UserButton: ({ user }: UserButtonProps) => react_jsx_runtime.JSX.Element;
+declare const UserButton: ({ buttonProps, avatarProps }: UserButtonProps) => react_jsx_runtime.JSX.Element;
 
 interface ResizeButtonProps {
     buttonProps?: React.RefAttributes<HTMLButtonElement>;
@@ -36,4 +34,4 @@ interface ShellProps extends Omit<SidebarProps, "sidebarWidth" | "setSidebarWidt
 }
 declare const Shell: ({ children, navigation }: ShellProps) => react_jsx_runtime.JSX.Element;
 
-export { NavButton, type NavButtonProps, ResizeButton, type ResizeButtonProps, Shell, type ShellProps, type User, UserButton, type UserButtonProps };
+export { NavButton, type NavButtonProps, ResizeButton, type ResizeButtonProps, Shell, type ShellProps, UserButton, type UserButtonProps };

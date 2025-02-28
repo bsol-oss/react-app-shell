@@ -1,8 +1,7 @@
-export interface User {
-    name: string;
-    avatar: string;
-}
+import { ButtonProps } from "@chakra-ui/react";
+import { AvatarProps } from "@/components/ui/avatar";
 export interface UserButtonProps {
-    user: User;
+    buttonProps: ButtonProps;
+    avatarProps: AvatarProps;
 }
-export declare const UserButton: ({ user }: UserButtonProps) => import("react/jsx-runtime").JSX.Element;
+export declare const UserButton: ({ buttonProps, avatarProps }: UserButtonProps) => import("react/jsx-runtime").JSX.Element;
