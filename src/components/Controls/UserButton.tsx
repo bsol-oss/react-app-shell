@@ -1,18 +1,13 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
-import { Avatar } from "@/components/ui/avatar";
+import { Button, ButtonProps, Flex, Text } from "@chakra-ui/react";
+import { Avatar, AvatarProps } from "@/components/ui/avatar";
 import { useShellContext } from "../Shell/useShellContext";
 
-export interface User {
-  name: string;
-  avatar: string;
-}
-
 export interface UserButtonProps {
-  user: User;
+  buttonProps: ButtonProps;
+  avatarProps: AvatarProps;
 }
 
-export const UserButton = ({ user }: UserButtonProps) => {
-  const { avatar, name } = user;
+export const UserButton = ({ buttonProps, avatarProps }: UserButtonProps) => {
   const { sidebarWidth } = useShellContext();
   if (sidebarWidth < 200) {
     return (
@@ -22,8 +17,9 @@ export const UserButton = ({ user }: UserButtonProps) => {
         alignItems={"center"}
         variant={"ghost"}
         height={"min-content"}
+        {...buttonProps}
       >
-        <Avatar src={avatar} />
+        <Avatar {...avatarProps} />
       </Button>
     );
   }
@@ -36,11 +32,12 @@ export const UserButton = ({ user }: UserButtonProps) => {
       variant={"ghost"}
       gap={"4"}
       height={"min-content"}
+      {...buttonProps}
     >
-      <Avatar src={avatar} />
+      <Avatar {...avatarProps} />
 
       <Text textOverflow={"ellipsis"} overflow={"hidden"}>
-        {name}
+        {avatarProps.name}
       </Text>
     </Button>
   );
