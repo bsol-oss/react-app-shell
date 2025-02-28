@@ -3,7 +3,6 @@ import { ButtonProps } from '@chakra-ui/react';
 import { ReactNode, Dispatch, SetStateAction } from 'react';
 
 interface NavButtonProps {
-    href: string;
     buttonProps?: ButtonProps;
     tag?: ReactNode;
     icon?: ReactNode;
