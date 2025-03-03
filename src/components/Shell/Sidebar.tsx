@@ -6,11 +6,9 @@ import { DragLocationHistory } from "@atlaskit/pragmatic-drag-and-drop/dist/type
 import { Flex, Grid } from "@chakra-ui/react";
 import {
   CSSProperties,
-  Dispatch,
   ReactNode,
-  SetStateAction,
   useEffect,
-  useRef,
+  useRef
 } from "react";
 import invariant from "tiny-invariant";
 import { useShellContext } from "./useShellContext";
@@ -22,8 +20,6 @@ export interface WidthsConfig {
 }
 export interface SidebarProps {
   navigation: ReactNode;
-  sidebarWidth: number;
-  setSidebarWidth: Dispatch<SetStateAction<number>>;
 }
 
 function getProposedWidth({
