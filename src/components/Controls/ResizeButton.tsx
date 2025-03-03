@@ -1,17 +1,17 @@
-import { Button } from "@chakra-ui/react";
+import { Button, ButtonProps } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { RxWidth } from "react-icons/rx";
 import { widths } from "../Shell/Sidebar";
 import { useShellContext } from "../Shell/useShellContext";
 
 export interface ResizeButtonProps {
-  buttonProps?: React.RefAttributes<HTMLButtonElement>;
-  icon?: ReactNode;
+  buttonProps?: ButtonProps;
+  children?: ReactNode;
 }
 
 export const ResizeButton = ({
   buttonProps = {},
-  icon = (
+  children = (
     <>
       <RxWidth />
     </>
@@ -39,7 +39,7 @@ export const ResizeButton = ({
       }}
       {...buttonProps}
     >
-      {icon}
+      {children}
     </Button>
   );
 };

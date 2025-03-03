@@ -11,7 +11,7 @@ import {
   FaPenNib,
   FaTools,
 } from "react-icons/fa";
-import { Flex, Grid, Image } from "@chakra-ui/react";
+import { Badge, Flex, Grid, Image } from "@chakra-ui/react";
 import { UserButton } from "@/components/Controls/UserButton";
 import { ResizeButton } from "@/components/Controls/ResizeButton";
 
@@ -40,7 +40,6 @@ export const PersonalBlog: Story = {
               ></Image>
               <Flex flexFlow={"column"}>
                 <NavButton
-                  href={"/"}
                   label="Home"
                   icon={<FaHome />}
                   buttonProps={{
@@ -48,18 +47,15 @@ export const PersonalBlog: Story = {
                   }}
                 />
                 <NavButton
-                  href={"/about"}
                   label="About"
                   icon={<FaInfoCircle />}
                 />
-                <NavButton href={"/blog"} label="Blog" icon={<FaPenNib />} />
+                <NavButton label="Blog" icon={<FaPenNib />} />
                 <NavButton
-                  href={"/portfolio"}
                   label="Portfolio"
                   icon={<FaBriefcase />}
                 />
                 <NavButton
-                  href={"/contact"}
                   label="Contact"
                   icon={<FaEnvelope />}
                   buttonProps={{
@@ -69,9 +65,9 @@ export const PersonalBlog: Story = {
                   }}
                 />
                 <NavButton
-                  href={"/services"}
                   label="Services"
                   icon={<FaTools />}
+                  tag={<Badge>{"nice"}</Badge>}
                 />
               </Flex>
               <Grid
@@ -82,9 +78,9 @@ export const PersonalBlog: Story = {
               >
                 <ResizeButton />
                 <UserButton
-                  user={{
+                  avatarProps={{
                     name: "Lorrem picsum",
-                    avatar: "https://picsum.photos/300/200?grayscale",
+                    src: "https://picsum.photos/300/200?grayscale",
                   }}
                 />
               </Grid>

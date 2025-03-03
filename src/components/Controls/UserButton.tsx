@@ -3,8 +3,8 @@ import { Avatar, AvatarProps } from "@/components/ui/avatar";
 import { useShellContext } from "../Shell/useShellContext";
 
 export interface UserButtonProps {
-  buttonProps: ButtonProps;
-  avatarProps: AvatarProps;
+  buttonProps?: ButtonProps;
+  avatarProps?: AvatarProps;
 }
 
 export const UserButton = ({ buttonProps, avatarProps }: UserButtonProps) => {
@@ -37,7 +37,7 @@ export const UserButton = ({ buttonProps, avatarProps }: UserButtonProps) => {
       <Avatar {...avatarProps} />
 
       <Text textOverflow={"ellipsis"} overflow={"hidden"}>
-        {avatarProps.name}
+        {avatarProps?.name}
       </Text>
     </Button>
   );
