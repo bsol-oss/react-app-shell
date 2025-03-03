@@ -1,7 +1,6 @@
 import { Button, ButtonProps } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { RxWidth } from "react-icons/rx";
-import { widths } from "../Shell/Sidebar";
 import { useShellContext } from "../Shell/useShellContext";
 
 export interface ResizeButtonProps {
@@ -17,7 +16,7 @@ export const ResizeButton = ({
     </>
   ),
 }: ResizeButtonProps) => {
-  const { sidebarWidth, setSidebarWidth } = useShellContext();
+  const { sidebarWidth, setSidebarWidth, widths } = useShellContext();
   return (
     <Button
       variant="ghost"

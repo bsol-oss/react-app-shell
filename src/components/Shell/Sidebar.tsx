@@ -11,29 +11,29 @@ import {
   SetStateAction,
   useEffect,
   useRef,
-  useState,
 } from "react";
-import { State } from "react-beautiful-dnd";
 import invariant from "tiny-invariant";
+import { useShellContext } from "./useShellContext";
 
+export interface WidthsConfig {
+  start: number;
+  min: number;
+  max: number;
+}
 export interface SidebarProps {
   navigation: ReactNode;
   sidebarWidth: number;
   setSidebarWidth: Dispatch<SetStateAction<number>>;
 }
 
-export const widths = {
-  start: 260,
-  min: 120,
-  max: 450,
-};
-
 function getProposedWidth({
   initialWidth,
   location,
+  widths,
 }: {
   initialWidth: number;
   location: DragLocationHistory;
+  widths: WidthsConfig;
 }): number {
   const diffX = location.current.input.clientX - location.initial.input.clientX;
   const proposedWidth = initialWidth + diffX;
@@ -42,16 +42,13 @@ function getProposedWidth({
   return Math.min(Math.max(widths.min, proposedWidth), widths.max);
 }
 
-const Sidebar = ({
-  navigation,
-  sidebarWidth,
-  setSidebarWidth,
-}: SidebarProps) => {
+const Sidebar = ({ navigation }: SidebarProps) => {
   const dividerRef = useRef<HTMLDivElement | null>(null);
-  const [state, setState] = useState<State>({
-    type: "idle",
-  });
+  // const [state, setState] = useState<State>({
+  //   type: "idle",
+  // });
   const contentRef = useRef<HTMLDivElement | null>(null);
+  const { sidebarWidth, setSidebarWidth, widths } = useShellContext();
 
   useEffect(() => {
     const divider = dividerRef.current;
@@ -68,25 +65,25 @@ const Sidebar = ({
         preventUnhandled.start();
       },
       onDragStart() {
-        setState({ type: "dragging" });
+        // setState({ type: "dragging" });
       },
       onDrag({ location }) {
         contentRef.current?.style.setProperty(
           "--local-resizing-width",
-          `${getProposedWidth({ initialWidth: sidebarWidth, location })}px`
+          `${getProposedWidth({ initialWidth: sidebarWidth, location, widths })}px`
         );
       },
       onDrop({ location }) {
         preventUnhandled.stop();
-        setState({ type: "idle" });
+        // setState({ type: "idle" });
 
         setSidebarWidth(
-          getProposedWidth({ initialWidth: sidebarWidth, location })
+          getProposedWidth({ initialWidth: sidebarWidth, location, widths })
         );
         contentRef.current?.style.removeProperty("--local-resizing-width");
       },
     });
-  }, [sidebarWidth, setSidebarWidth]);
+  }, [sidebarWidth, setSidebarWidth, widths]);
   return (
     <Flex width={`${sidebarWidth}px`}>
       <Grid
@@ -97,7 +94,7 @@ const Sidebar = ({
         top={"0rem"}
         as="section"
         height={"100dvh"}
-        overflow={'auto'}
+        overflow={"auto"}
         style={
           { "--local-initial-width": `${sidebarWidth}px` } as CSSProperties
         }
