@@ -35,22 +35,28 @@ const ShellContext = React.createContext({
     setSidebarWidth: ((prevState) => {
         return prevState;
     }),
+    widths: {
+        start: 200,
+        max: 400,
+        min: 80,
+    },
 });
 
 const useShellContext = () => {
-    const { sidebarWidth, setSidebarWidth } = React.useContext(ShellContext);
+    const { sidebarWidth, setSidebarWidth, widths } = React.useContext(ShellContext);
     return {
         sidebarWidth,
         setSidebarWidth,
+        widths,
     };
 };
 
-const NavButton = ({ buttonProps = {}, tag = jsxRuntime.jsx(jsxRuntime.Fragment, {}), icon = jsxRuntime.jsx(jsxRuntime.Fragment, {}), label = "", }) => {
+const NavButton = ({ buttonProps = {}, tag = jsxRuntime.jsx(jsxRuntime.Fragment, {}), icon = jsxRuntime.jsx(jsxRuntime.Fragment, {}), label = "", textProps = {}, }) => {
     const { sidebarWidth } = useShellContext();
     if (sidebarWidth < 200) {
         return (jsxRuntime.jsx(react.Button, { variant: "ghost", justifyContent: "center", overflowX: "hidden", ...buttonProps, children: icon }));
     }
-    return (jsxRuntime.jsxs(react.Button, { variant: "ghost", justifyContent: "start", overflowX: "hidden", display: "grid", gap: "3", alignItems: "center", gridTemplateColumns: "auto 1fr", ...buttonProps, children: [icon, label !== "" && (jsxRuntime.jsxs(react.Flex, { alignItems: "center", gap: "2", children: [jsxRuntime.jsx(react.Text, { fontSize: "md", fontWeight: "lighter", textOverflow: "ellipsis", children: label }), tag] }))] }));
+    return (jsxRuntime.jsxs(react.Button, { variant: "ghost", justifyContent: "center", overflowX: "hidden", display: "grid", gap: "3", alignContent: "center", gridTemplateColumns: "auto 1fr auto", ...buttonProps, children: [icon, label !== "" && (jsxRuntime.jsx(react.Text, { fontSize: "md", fontWeight: "lighter", textOverflow: "ellipsis", textAlign: "start", ...textProps, children: label })), tag] }));
 };
 
 const Avatar = React__namespace.forwardRef(function Avatar(props, ref) {
@@ -79,7 +85,25 @@ const UserButton = ({ buttonProps, avatarProps }) => {
     if (sidebarWidth < 200) {
         return (jsxRuntime.jsx(react.Button, { as: react.Flex, justifyContent: "center", alignItems: "center", variant: "ghost", height: "min-content", ...buttonProps, children: jsxRuntime.jsx(Avatar, { ...avatarProps }) }));
     }
-    return (jsxRuntime.jsxs(react.Button, { as: react.Flex, justifyContent: "start", alignItems: "center", padding: "2", variant: "ghost", gap: "4", height: "min-content", ...buttonProps, children: [jsxRuntime.jsx(Avatar, { ...avatarProps }), jsxRuntime.jsx(react.Text, { textOverflow: "ellipsis", overflow: "hidden", children: avatarProps.name })] }));
+    return (jsxRuntime.jsxs(react.Button, { as: react.Flex, justifyContent: "start", alignItems: "center", padding: "2", variant: "ghost", gap: "4", height: "min-content", ...buttonProps, children: [jsxRuntime.jsx(Avatar, { ...avatarProps }), jsxRuntime.jsx(react.Text, { textOverflow: "ellipsis", overflow: "hidden", children: avatarProps?.name })] }));
+};
+
+const ResizeButton = ({ buttonProps = {}, children = (jsxRuntime.jsx(jsxRuntime.Fragment, { children: jsxRuntime.jsx(rx.RxWidth, {}) })), }) => {
+    const { sidebarWidth, setSidebarWidth, widths } = useShellContext();
+    return (jsxRuntime.jsx(react.Button, { variant: "ghost", justifyContent: "center", overflowX: "hidden", onClick: () => {
+            if (sidebarWidth > widths.min) {
+                setSidebarWidth(widths.min);
+                return;
+            }
+            if (sidebarWidth == widths.min) {
+                setSidebarWidth(widths.max);
+                return;
+            }
+            if (sidebarWidth == widths.max) {
+                setSidebarWidth(widths.min);
+                return;
+            }
+        }, ...buttonProps, children: children }));
 };
 
 // pulling this into a separate file so adapter(s) that don't
@@ -2091,23 +2115,19 @@ var preventUnhandled = {
   stop: stop
 };
 
-const widths = {
-    start: 260,
-    min: 120,
-    max: 450,
-};
-function getProposedWidth({ initialWidth, location, }) {
+function getProposedWidth({ initialWidth, location, widths, }) {
     const diffX = location.current.input.clientX - location.initial.input.clientX;
     const proposedWidth = initialWidth + diffX;
     // ensure we don't go below the min or above the max allowed widths
     return Math.min(Math.max(widths.min, proposedWidth), widths.max);
 }
-const Sidebar = ({ navigation, sidebarWidth, setSidebarWidth, }) => {
+const Sidebar = ({ navigation }) => {
     const dividerRef = React.useRef(null);
-    const [state, setState] = React.useState({
-        type: "idle",
-    });
+    // const [state, setState] = useState<State>({
+    //   type: "idle",
+    // });
     const contentRef = React.useRef(null);
+    const { sidebarWidth, setSidebarWidth, widths } = useShellContext();
     React.useEffect(() => {
         const divider = dividerRef.current;
         invariant(divider);
@@ -2122,20 +2142,20 @@ const Sidebar = ({ navigation, sidebarWidth, setSidebarWidth, }) => {
                 preventUnhandled.start();
             },
             onDragStart() {
-                setState({ type: "dragging" });
+                // setState({ type: "dragging" });
             },
             onDrag({ location }) {
-                contentRef.current?.style.setProperty("--local-resizing-width", `${getProposedWidth({ initialWidth: sidebarWidth, location })}px`);
+                contentRef.current?.style.setProperty("--local-resizing-width", `${getProposedWidth({ initialWidth: sidebarWidth, location, widths })}px`);
             },
             onDrop({ location }) {
                 preventUnhandled.stop();
-                setState({ type: "idle" });
-                setSidebarWidth(getProposedWidth({ initialWidth: sidebarWidth, location }));
+                // setState({ type: "idle" });
+                setSidebarWidth(getProposedWidth({ initialWidth: sidebarWidth, location, widths }));
                 contentRef.current?.style.removeProperty("--local-resizing-width");
             },
         });
-    }, [sidebarWidth, setSidebarWidth]);
-    return (jsxRuntime.jsxs(react.Flex, { width: `${sidebarWidth}px`, children: [jsxRuntime.jsx(react.Grid, { flexGrow: "1", flexShrink: "1", ref: contentRef, position: "sticky", top: "0rem", as: "section", height: "100dvh", overflow: 'auto', style: { "--local-initial-width": `${sidebarWidth}px` }, children: navigation }), jsxRuntime.jsx(react.Flex, { ref: dividerRef, cursor: "col-resize", width: "1", bgColor: "transparent", flexGrow: "0", flexShrink: "0", _before: {
+    }, [sidebarWidth, setSidebarWidth, widths]);
+    return (jsxRuntime.jsxs(react.Flex, { width: `${sidebarWidth}px`, children: [jsxRuntime.jsx(react.Grid, { flexGrow: "1", flexShrink: "1", ref: contentRef, position: "sticky", top: "0rem", as: "section", height: "100dvh", overflow: "auto", style: { "--local-initial-width": `${sidebarWidth}px` }, children: navigation }), jsxRuntime.jsx(react.Flex, { ref: dividerRef, cursor: "col-resize", width: "1", bgColor: "transparent", flexGrow: "0", flexShrink: "0", _before: {
                     content: '""',
                     position: "relative",
                     width: "0.5",
@@ -2147,31 +2167,18 @@ const Sidebar = ({ navigation, sidebarWidth, setSidebarWidth, }) => {
                 } })] }));
 };
 
-const ResizeButton = ({ buttonProps = {}, icon = (jsxRuntime.jsx(jsxRuntime.Fragment, { children: jsxRuntime.jsx(rx.RxWidth, {}) })), }) => {
-    const { sidebarWidth, setSidebarWidth } = useShellContext();
-    return (jsxRuntime.jsx(react.Button, { variant: "ghost", justifyContent: "center", overflowX: "hidden", onClick: () => {
-            if (sidebarWidth > widths.min) {
-                setSidebarWidth(widths.min);
-                return;
-            }
-            if (sidebarWidth == widths.min) {
-                setSidebarWidth(widths.max);
-                return;
-            }
-            if (sidebarWidth == widths.max) {
-                setSidebarWidth(widths.min);
-                return;
-            }
-        }, ...buttonProps, children: icon }));
-};
-
-const Shell = ({ children, navigation }) => {
-    const [sidebarWidth, setSidebarWidth] = React.useState(200);
+const Shell = ({ children, navigation, initialWidth = 200, gridProps = {}, widths = {
+    start: 200,
+    max: 400,
+    min: 80,
+}, }) => {
+    const [sidebarWidth, setSidebarWidth] = React.useState(initialWidth);
     const shared = {
         sidebarWidth: sidebarWidth,
         setSidebarWidth: setSidebarWidth,
+        widths,
     };
-    return (jsxRuntime.jsx(ShellContext.Provider, { value: shared, children: jsxRuntime.jsxs(react.Grid, { as: "section", gridTemplateColumns: "auto 1fr", width: "100dvw", height: "100dvh", overflow: 'auto', children: [jsxRuntime.jsx(Sidebar, { navigation: navigation, ...shared }), children] }) }));
+    return (jsxRuntime.jsx(ShellContext.Provider, { value: shared, children: jsxRuntime.jsxs(react.Grid, { as: "section", gridTemplateColumns: "auto 1fr", width: "100dvw", height: "100dvh", overflow: "auto", ...gridProps, children: [jsxRuntime.jsx(Sidebar, { navigation: navigation }), children] }) }));
 };
 
 exports.NavButton = NavButton;

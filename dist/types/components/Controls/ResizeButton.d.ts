@@ -1,6 +1,7 @@
+import { ButtonProps } from "@chakra-ui/react";
 import { ReactNode } from "react";
 export interface ResizeButtonProps {
-    buttonProps?: React.RefAttributes<HTMLButtonElement>;
-    icon?: ReactNode;
+    buttonProps?: ButtonProps;
+    children?: ReactNode;
 }
-export declare const ResizeButton: ({ buttonProps, icon, }: ResizeButtonProps) => import("react/jsx-runtime").JSX.Element;
+export declare const ResizeButton: ({ buttonProps, children, }: ResizeButtonProps) => import("react/jsx-runtime").JSX.Element;

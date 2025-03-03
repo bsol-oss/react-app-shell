@@ -2,4 +2,5 @@
 export declare const useShellContext: () => {
     sidebarWidth: number;
     setSidebarWidth: import("react").Dispatch<import("react").SetStateAction<number>>;
+    widths: import("./Sidebar").WidthsConfig;
 };
