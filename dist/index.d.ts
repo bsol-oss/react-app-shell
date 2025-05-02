@@ -1,5 +1,5 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
-import { ButtonProps, TextProps, GridProps } from '@chakra-ui/react';
+import { ButtonProps, TextProps, FlexProps, GridProps } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { AvatarProps } from '@/components/ui/avatar';
 
@@ -31,6 +31,7 @@ interface WidthsConfig {
 }
 interface SidebarProps {
     navigation: ReactNode;
+    flexProps?: FlexProps;
 }
 
 interface ShellProps extends Omit<SidebarProps, "sidebarWidth" | "setSidebarWidth"> {
@@ -38,7 +39,8 @@ interface ShellProps extends Omit<SidebarProps, "sidebarWidth" | "setSidebarWidt
     initialWidth?: number;
     widths?: WidthsConfig;
     gridProps?: GridProps;
+    sidebarFlexProps?: FlexProps;
 }
-declare const Shell: ({ children, navigation, initialWidth, gridProps, widths, }: ShellProps) => react_jsx_runtime.JSX.Element;
+declare const Shell: ({ children, navigation, initialWidth, gridProps, widths, sidebarFlexProps, }: ShellProps) => react_jsx_runtime.JSX.Element;
 
 export { NavButton, type NavButtonProps, ResizeButton, type ResizeButtonProps, Shell, type ShellProps, UserButton, type UserButtonProps };

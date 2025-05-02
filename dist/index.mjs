@@ -2101,7 +2101,7 @@ function getProposedWidth({ initialWidth, location, widths, }) {
     // ensure we don't go below the min or above the max allowed widths
     return Math.min(Math.max(widths.min, proposedWidth), widths.max);
 }
-const Sidebar = ({ navigation }) => {
+const Sidebar = ({ navigation, flexProps = {} }) => {
     const dividerRef = useRef(null);
     // const [state, setState] = useState<State>({
     //   type: "idle",
@@ -2135,7 +2135,7 @@ const Sidebar = ({ navigation }) => {
             },
         });
     }, [sidebarWidth, setSidebarWidth, widths]);
-    return (jsxs(Flex, { width: `${sidebarWidth}px`, children: [jsx(Grid, { flexGrow: "1", flexShrink: "1", ref: contentRef, position: "sticky", top: "0rem", as: "section", height: "100dvh", overflow: "auto", style: { "--local-initial-width": `${sidebarWidth}px` }, children: navigation }), jsx(Flex, { ref: dividerRef, cursor: "col-resize", width: "1", bgColor: "transparent", flexGrow: "0", flexShrink: "0", _before: {
+    return (jsxs(Flex, { width: `${sidebarWidth}px`, position: "sticky", top: "0rem", ...flexProps, children: [jsx(Grid, { flexGrow: "1", flexShrink: "1", ref: contentRef, position: "sticky", top: "0rem", as: "section", height: "100dvh", overflow: "auto", style: { "--local-initial-width": `${sidebarWidth}px` }, children: navigation }), jsx(Flex, { ref: dividerRef, cursor: "col-resize", width: "1", bgColor: "transparent", flexGrow: "0", flexShrink: "0", _before: {
                     content: '""',
                     position: "relative",
                     width: "0.5",
@@ -2151,14 +2151,14 @@ const Shell = ({ children, navigation, initialWidth = 200, gridProps = {}, width
     start: 200,
     max: 400,
     min: 80,
-}, }) => {
+}, sidebarFlexProps = {}, }) => {
     const [sidebarWidth, setSidebarWidth] = useState(initialWidth);
     const shared = {
         sidebarWidth: sidebarWidth,
         setSidebarWidth: setSidebarWidth,
         widths,
     };
-    return (jsx(ShellContext.Provider, { value: shared, children: jsxs(Grid, { as: "section", gridTemplateColumns: "auto 1fr", width: "100dvw", height: "100dvh", overflow: "auto", ...gridProps, children: [jsx(Sidebar, { navigation: navigation }), children] }) }));
+    return (jsx(ShellContext.Provider, { value: shared, children: jsxs(Grid, { as: "section", gridTemplateColumns: "auto 1fr", width: "100dvw", height: "100dvh", overflow: "auto", ...gridProps, children: [jsx(Sidebar, { navigation: navigation, ...sidebarFlexProps }), children] }) }));
 };
 
 export { NavButton, ResizeButton, Shell, UserButton };
