@@ -3,13 +3,8 @@ import { disableNativeDragPreview } from "@atlaskit/pragmatic-drag-and-drop/elem
 import { preventUnhandled } from "@atlaskit/pragmatic-drag-and-drop/prevent-unhandled";
 
 import { DragLocationHistory } from "@atlaskit/pragmatic-drag-and-drop/dist/types/internal-types";
-import { Flex, Grid } from "@chakra-ui/react";
-import {
-  CSSProperties,
-  ReactNode,
-  useEffect,
-  useRef
-} from "react";
+import { Flex, FlexProps, Grid } from "@chakra-ui/react";
+import { CSSProperties, ReactNode, useEffect, useRef } from "react";
 import invariant from "tiny-invariant";
 import { useShellContext } from "./useShellContext";
 
@@ -20,6 +15,7 @@ export interface WidthsConfig {
 }
 export interface SidebarProps {
   navigation: ReactNode;
+  flexProps?: FlexProps;
 }
 
 function getProposedWidth({
@@ -38,7 +34,7 @@ function getProposedWidth({
   return Math.min(Math.max(widths.min, proposedWidth), widths.max);
 }
 
-const Sidebar = ({ navigation }: SidebarProps) => {
+const Sidebar = ({ navigation, flexProps = {} }: SidebarProps) => {
   const dividerRef = useRef<HTMLDivElement | null>(null);
   // const [state, setState] = useState<State>({
   //   type: "idle",
@@ -81,7 +77,12 @@ const Sidebar = ({ navigation }: SidebarProps) => {
     });
   }, [sidebarWidth, setSidebarWidth, widths]);
   return (
-    <Flex width={`${sidebarWidth}px`}>
+    <Flex
+      width={`${sidebarWidth}px`}
+      position={"sticky"}
+      top={"0rem"}
+      {...flexProps}
+    >
       <Grid
         flexGrow={"1"}
         flexShrink={"1"}

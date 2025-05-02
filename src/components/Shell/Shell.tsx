@@ -1,4 +1,4 @@
-import { Grid, GridProps } from "@chakra-ui/react";
+import { FlexProps, Grid, GridProps } from "@chakra-ui/react";
 import { ReactNode, useState } from "react";
 import { ShellContext } from "./ShellContext";
 import Sidebar, { SidebarProps, WidthsConfig } from "./Sidebar";
@@ -9,6 +9,7 @@ export interface ShellProps
   initialWidth?: number;
   widths?: WidthsConfig;
   gridProps?: GridProps;
+  sidebarFlexProps?: FlexProps;
 }
 
 export const Shell = ({
@@ -21,6 +22,7 @@ export const Shell = ({
     max: 400,
     min: 80,
   },
+  sidebarFlexProps = {},
 }: ShellProps) => {
   const [sidebarWidth, setSidebarWidth] = useState<number>(initialWidth);
 
@@ -39,7 +41,7 @@ export const Shell = ({
         overflow={"auto"}
         {...gridProps}
       >
-        <Sidebar navigation={navigation} />
+        <Sidebar navigation={navigation} {...sidebarFlexProps} />
         {children}
       </Grid>
     </ShellContext.Provider>
